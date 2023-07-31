@@ -33,8 +33,17 @@ if (keystorePropertiesFile.exists()) {
 }
 android {
     compileSdkVersion 33
-    ndkVersion flutter.ndkVersion
+//    ndkVersion flutter.ndkVersion
+//    ndkVersion '23.1.7779620'
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+        checkReleaseBuilds false //<- add this line
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -71,9 +80,9 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
             minifyEnabled true
-            //useProguard true
+//            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            shrinkResources true
+//            shrinkResources true
         }
     }
 }

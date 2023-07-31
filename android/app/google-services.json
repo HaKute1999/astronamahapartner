@@ -1,82 +1,34 @@
 {
   "project_info": {
-    "project_number": "665794319149",
-    "firebase_url": "https://astroguru-75d26-default-rtdb.firebaseio.com",
-    "project_id": "astroguru-75d26",
-    "storage_bucket": "astroguru-75d26.appspot.com"
+    "project_number": "619772328425",
+    "project_id": "astronamaha-300d3",
+    "storage_bucket": "astronamaha-300d3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:665794319149:android:41451093c42a464108b9a4",
+        "mobilesdk_app_id": "1:619772328425:android:1e8da38856be8673817378",
         "android_client_info": {
-          "package_name": "com.AstroGuru.app"
+          "package_name": "com.astronamaha.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "665794319149-02oh4re817htjn9jv6j6jcv8m7priiri.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.AstroGuru.app",
-            "certificate_hash": "48f97620ed433b637b0cf57774c84f25aa69d7c7"
-          }
-        },
-        {
-          "client_id": "665794319149-9q3jsrtsdl7nhsp1th6g9h5boa29lecs.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.AstroGuru.app",
-            "certificate_hash": "161b454069b78a48869b7d3ae19b14746a6e8429"
-          }
-        },
-        {
-          "client_id": "665794319149-ajqon3l4t8r6p12scct9r8f7b7p6p8e8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.AstroGuru.app",
-            "certificate_hash": "6df6f6380d7a5e403ab2729521a752c1b3478abf"
-          }
-        },
-        {
-          "client_id": "665794319149-e09m170hrtesjbbe4q36sa9fj1trtcck.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.AstroGuru.app",
-            "certificate_hash": "24a3451ded746e404a39f8c8c04a244678ed8f81"
-          }
-        },
-        {
-          "client_id": "665794319149-fqqfsvidhpkcvo9poo4kjbddnh02uath.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.AstroGuru.app",
-            "certificate_hash": "150ae301540b9061a485eb253fb348087f59efe7"
-          }
-        },
-        {
-          "client_id": "665794319149-ho1h3o3jlj5n3440cutv3i10u9f2gbkv.apps.googleusercontent.com",
+          "client_id": "619772328425-l0ia1i2966nr8l3n6jgcmcm787hdtj83.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCa7qQPpA7ASons04biylZVbYNMlNZx9Tk"
+          "current_key": "AIzaSyBKZ2R-g2H2KFYmgxzyLy1VhkimsfzlImM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "665794319149-ho1h3o3jlj5n3440cutv3i10u9f2gbkv.apps.googleusercontent.com",
+              "client_id": "619772328425-eobmr4csvsbjnmcd4plecn0c16v0uv2o.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "665794319149-3mni5ojukktfr9riv3gg90uahj7e5k6b.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.os.AstroGuru.app"
-              }
             }
           ]
         }
@@ -84,43 +36,86 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:665794319149:android:27a14b12df4956e708b9a4",
+        "mobilesdk_app_id": "1:619772328425:android:577fea71d06f620a817378",
         "android_client_info": {
-          "package_name": "com.example.astrologer_app"
+          "package_name": "com.astronamaha.partner"
         }
       },
       "oauth_client": [
         {
-          "client_id": "665794319149-p9e5lk3e7jt7gn2rimtguqkd5o824o44.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.astrologer_app",
-            "certificate_hash": "150ae301540b9061a485eb253fb348087f59efe7"
-          }
-        },
-        {
-          "client_id": "665794319149-ho1h3o3jlj5n3440cutv3i10u9f2gbkv.apps.googleusercontent.com",
+          "client_id": "619772328425-l0ia1i2966nr8l3n6jgcmcm787hdtj83.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCa7qQPpA7ASons04biylZVbYNMlNZx9Tk"
+          "current_key": "AIzaSyBKZ2R-g2H2KFYmgxzyLy1VhkimsfzlImM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "665794319149-ho1h3o3jlj5n3440cutv3i10u9f2gbkv.apps.googleusercontent.com",
+              "client_id": "619772328425-eobmr4csvsbjnmcd4plecn0c16v0uv2o.apps.googleusercontent.com",
               "client_type": 3
-            },
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619772328425:android:2166011f1b2de503817378",
+        "android_client_info": {
+          "package_name": "com.expertcustomize.astro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619772328425-l0ia1i2966nr8l3n6jgcmcm787hdtj83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKZ2R-g2H2KFYmgxzyLy1VhkimsfzlImM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
             {
-              "client_id": "665794319149-3mni5ojukktfr9riv3gg90uahj7e5k6b.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.os.AstroGuru.app"
-              }
+              "client_id": "619772328425-eobmr4csvsbjnmcd4plecn0c16v0uv2o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619772328425:android:d165b6b1c0eb2d8e817378",
+        "android_client_info": {
+          "package_name": "com.expertcustomize.astropartner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619772328425-l0ia1i2966nr8l3n6jgcmcm787hdtj83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKZ2R-g2H2KFYmgxzyLy1VhkimsfzlImM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619772328425-eobmr4csvsbjnmcd4plecn0c16v0uv2o.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         }

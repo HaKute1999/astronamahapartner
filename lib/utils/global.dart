@@ -136,7 +136,7 @@ Map<String, dynamic> appParameters = {
     "apiUrl": "https://astronamaha.in/api/",
   },
   "DEV": {
-    "apiUrl": "http://192.168.29.223:8001/api/",
+    "apiUrl": "https://astronamaha.in/api/",
   }
 };
 

@@ -31,7 +31,9 @@ import 'package:astrologer_app/utils/global.dart' as global;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+      name: "Astronamaha Partner",
+      options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   NotificationSettings settings = await messaging.requestPermission(
@@ -48,13 +50,15 @@ void main() async {
   runApp(MyApp());
 }
 
-FlutterLocalNotificationsPlugin _localNotifications = FlutterLocalNotificationsPlugin();
+FlutterLocalNotificationsPlugin _localNotifications =
+    FlutterLocalNotificationsPlugin();
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  LiveAstrologerController liveAstrologerController = Get.put(LiveAstrologerController());
+  LiveAstrologerController liveAstrologerController =
+      Get.put(LiveAstrologerController());
   CallController callController = Get.put(CallController());
   ChatController chatController = Get.put(ChatController());
   ReportController reportController = Get.put(ReportController());
@@ -62,7 +66,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('_firebaseMessagingBackgroundHandler called..');
   global.sp = await SharedPreferences.getInstance();
   if (global.sp!.getString("currentUser") != null) {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
 
     if (message.notification!.title == "For Live Streaming Chat") {
       print('_firebaseMessagingBackgroundHandler For Live Streaming Chat');
@@ -81,8 +86,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
         liveAstrologerController.update();
         liveAstrologerController.chatId = chatId;
         int waitListId = int.parse(message.data["waitListId"].toString());
-        String time = liveAstrologerController.waitList.where((element) => element.id == waitListId).first.time;
-        liveAstrologerController.endTime = DateTime.now().millisecondsSinceEpoch + 1000 * int.parse(time.toString());
+        String time = liveAstrologerController.waitList
+            .where((element) => element.id == waitListId)
+            .first
+            .time;
+        liveAstrologerController.endTime =
+            DateTime.now().millisecondsSinceEpoch +
+                1000 * int.parse(time.toString());
         liveAstrologerController.update();
       } else {
         if (liveAstrologerController.isOpenPersonalChatDialog) {
@@ -93,15 +103,21 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
         liveAstrologerController.chatId = null;
         liveAstrologerController.update();
       }
-    } else if (message.notification!.title == "For timer and session start for live") {
+    } else if (message.notification!.title ==
+        "For timer and session start for live") {
       Future.delayed(const Duration(milliseconds: 500)).then((value) async {
         await _localNotifications.cancelAll();
       });
       int waitListId = int.parse(message.data["waitListId"].toString());
       liveAstrologerController.joinedUserName = message.data["name"] ?? "User";
-      liveAstrologerController.joinedUserProfile = message.data["profile"] ?? "";
-      String time = liveAstrologerController.waitList.where((element) => element.id == waitListId).first.time;
-      liveAstrologerController.endTime = DateTime.now().millisecondsSinceEpoch + 1000 * int.parse(time.toString());
+      liveAstrologerController.joinedUserProfile =
+          message.data["profile"] ?? "";
+      String time = liveAstrologerController.waitList
+          .where((element) => element.id == waitListId)
+          .first
+          .time;
+      liveAstrologerController.endTime = DateTime.now().millisecondsSinceEpoch +
+          1000 * int.parse(time.toString());
       liveAstrologerController.update();
     } else if (message.notification!.title == "Start simple chat timer") {
       Future.delayed(const Duration(milliseconds: 500)).then((value) async {
@@ -109,7 +125,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
       });
       TimerController timerController = Get.put(TimerController());
       timerController.isStartTimer = true;
-      timerController.endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 300;
+      timerController.endTime =
+          DateTime.now().millisecondsSinceEpoch + 1000 * 300;
       timerController.update();
     } else if (message.notification!.title == "End chat from customer") {
       Future.delayed(const Duration(milliseconds: 500)).then((value) async {
@@ -122,7 +139,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
         chatController.update();
         Get.back();
       }
-    } else if (message.notification!.title == "Reject call request from astrologer") {
+    } else if (message.notification!.title ==
+        "Reject call request from astrologer") {
       Future.delayed(const Duration(milliseconds: 500)).then((value) async {
         await _localNotifications.cancelAll();
       });
@@ -151,7 +169,9 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
               reportController.reportList.clear();
               reportController.update();
               await reportController.getReportList(false);
-            } else if (messageData['notificationType'] == 12 || messageData['notificationType'] == 11 || messageData['notificationType'] == 10) {
+            } else if (messageData['notificationType'] == 12 ||
+                messageData['notificationType'] == 11 ||
+                messageData['notificationType'] == 10) {
               liveAstrologerController.isUserJoinWaitList = true;
               liveAstrologerController.update();
             }
@@ -231,14 +251,16 @@ class _MyAppState extends State<MyApp> {
   dynamic analytics;
 
   dynamic observer;
-  LiveAstrologerController liveAstrologerController = Get.put(LiveAstrologerController());
+  LiveAstrologerController liveAstrologerController =
+      Get.put(LiveAstrologerController());
   WalletController walletController = Get.put(WalletController());
   ChatController chatController = Get.put(ChatController());
   CallController callController = Get.put(CallController());
   TimerController timerController = Get.put(TimerController());
   ReportController reportController = Get.put(ReportController());
   Future<void> foregroundNotification(RemoteMessage payload) async {
-    final DarwinInitializationSettings initializationSettingsDarwin = DarwinInitializationSettings(
+    final DarwinInitializationSettings initializationSettingsDarwin =
+        DarwinInitializationSettings(
       defaultPresentBadge: true,
       requestSoundPermission: true,
       requestBadgePermission: true,
@@ -248,10 +270,14 @@ class _MyAppState extends State<MyApp> {
         return;
       },
     );
-    AndroidInitializationSettings android = const AndroidInitializationSettings('@mipmap/ic_launcher');
-    final InitializationSettings initialSetting = InitializationSettings(android: android, iOS: initializationSettingsDarwin);
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    flutterLocalNotificationsPlugin.initialize(initialSetting, onDidReceiveNotificationResponse: (_) {
+    AndroidInitializationSettings android =
+        const AndroidInitializationSettings('@mipmap/ic_launcher');
+    final InitializationSettings initialSetting = InitializationSettings(
+        android: android, iOS: initializationSettingsDarwin);
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin.initialize(initialSetting,
+        onDidReceiveNotificationResponse: (_) {
       onSelectNotification(json.encode(payload.data));
     });
 
@@ -264,7 +290,8 @@ class _MyAppState extends State<MyApp> {
       playSound: true,
     );
     const DarwinNotificationDetails iOSDetails = DarwinNotificationDetails();
-    NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidDetails, iOS: iOSDetails);
+    NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidDetails, iOS: iOSDetails);
     global.sp = await SharedPreferences.getInstance();
     if (global.sp!.getString("currentUser") != null) {
       await flutterLocalNotificationsPlugin.show(
@@ -295,8 +322,13 @@ class _MyAppState extends State<MyApp> {
           liveAstrologerController.update();
           liveAstrologerController.chatId = chatId;
           int waitListId = int.parse(message.data["waitListId"].toString());
-          String time = liveAstrologerController.waitList.where((element) => element.id == waitListId).first.time;
-          liveAstrologerController.endTime = DateTime.now().millisecondsSinceEpoch + 1000 * int.parse(time.toString());
+          String time = liveAstrologerController.waitList
+              .where((element) => element.id == waitListId)
+              .first
+              .time;
+          liveAstrologerController.endTime =
+              DateTime.now().millisecondsSinceEpoch +
+                  1000 * int.parse(time.toString());
           liveAstrologerController.update();
         } else {
           if (liveAstrologerController.isOpenPersonalChatDialog) {
@@ -307,16 +339,25 @@ class _MyAppState extends State<MyApp> {
           liveAstrologerController.chatId = null;
           liveAstrologerController.update();
         }
-      } else if (message.notification!.title == "For timer and session start for live") {
+      } else if (message.notification!.title ==
+          "For timer and session start for live") {
         int waitListId = int.parse(message.data["waitListId"].toString());
-        liveAstrologerController.joinedUserName = message.data["name"] ?? "User";
-        liveAstrologerController.joinedUserProfile = message.data["profile"] ?? "";
-        String time = liveAstrologerController.waitList.where((element) => element.id == waitListId).first.time;
-        liveAstrologerController.endTime = DateTime.now().millisecondsSinceEpoch + 1000 * int.parse(time.toString());
+        liveAstrologerController.joinedUserName =
+            message.data["name"] ?? "User";
+        liveAstrologerController.joinedUserProfile =
+            message.data["profile"] ?? "";
+        String time = liveAstrologerController.waitList
+            .where((element) => element.id == waitListId)
+            .first
+            .time;
+        liveAstrologerController.endTime =
+            DateTime.now().millisecondsSinceEpoch +
+                1000 * int.parse(time.toString());
         liveAstrologerController.update();
       } else if (message.notification!.title == "Start simple chat timer") {
         timerController.isStartTimer = true;
-        timerController.endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 300;
+        timerController.endTime =
+            DateTime.now().millisecondsSinceEpoch + 1000 * 300;
         timerController.update();
       } else if (message.notification!.title == "End chat from customer") {
         //if astrologer in chat screen then customer end chat at that time astrologer automatically back from chat screen
@@ -325,7 +366,8 @@ class _MyAppState extends State<MyApp> {
           chatController.update();
           Get.back();
         }
-      } else if (message.notification!.title == "Reject call request from astrologer") {
+      } else if (message.notification!.title ==
+          "Reject call request from astrologer") {
         //if astrologer in call screen then customer end call at that time astrologer automatically leave the call
         print('user Rejected call request:-');
         callController.isRejectCall = true;
@@ -342,46 +384,68 @@ class _MyAppState extends State<MyApp> {
                 // get wallet api call
                 await walletController.getAmountList();
                 foregroundNotification(message);
-                await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+                await FirebaseMessaging.instance
+                    .setForegroundNotificationPresentationOptions(
+                        alert: true, badge: true, sound: true);
               } else if (messageData['notificationType'] == 8) {
                 chatController.chatList.clear();
                 chatController.update();
                 await chatController.getChatList(false);
                 foregroundNotification(message);
-                await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+                await FirebaseMessaging.instance
+                    .setForegroundNotificationPresentationOptions(
+                        alert: true, badge: true, sound: true);
               } else if (messageData['notificationType'] == 2) {
                 await callController.getCallList(false);
                 foregroundNotification(message);
-                await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+                await FirebaseMessaging.instance
+                    .setForegroundNotificationPresentationOptions(
+                        alert: true, badge: true, sound: true);
               } else if (messageData['notificationType'] == 9) {
                 reportController.reportList.clear();
                 reportController.update();
                 await reportController.getReportList(false);
                 foregroundNotification(message);
-                await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
-              } else if (messageData['notificationType'] == 12 || messageData['notificationType'] == 11 || messageData['notificationType'] == 10) {
+                await FirebaseMessaging.instance
+                    .setForegroundNotificationPresentationOptions(
+                        alert: true, badge: true, sound: true);
+              } else if (messageData['notificationType'] == 12 ||
+                  messageData['notificationType'] == 11 ||
+                  messageData['notificationType'] == 10) {
                 liveAstrologerController.isUserJoinWaitList = true;
                 liveAstrologerController.update();
                 foregroundNotification(message);
-                await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+                await FirebaseMessaging.instance
+                    .setForegroundNotificationPresentationOptions(
+                        alert: true, badge: true, sound: true);
               } else {
                 foregroundNotification(message);
-                await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+                await FirebaseMessaging.instance
+                    .setForegroundNotificationPresentationOptions(
+                        alert: true, badge: true, sound: true);
               }
 
               foregroundNotification(message);
-              await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+              await FirebaseMessaging.instance
+                  .setForegroundNotificationPresentationOptions(
+                      alert: true, badge: true, sound: true);
             } else {
               foregroundNotification(message);
-              await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+              await FirebaseMessaging.instance
+                  .setForegroundNotificationPresentationOptions(
+                      alert: true, badge: true, sound: true);
             }
           } else {
             foregroundNotification(message);
-            await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+            await FirebaseMessaging.instance
+                .setForegroundNotificationPresentationOptions(
+                    alert: true, badge: true, sound: true);
           }
         } catch (e) {
           foregroundNotification(message);
-          await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+          await FirebaseMessaging.instance
+              .setForegroundNotificationPresentationOptions(
+                  alert: true, badge: true, sound: true);
         }
       }
     });
@@ -396,7 +460,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SplashController>(builder: (s) {
-      return GoogleTranslatorInit(apiKey, translateFrom: Locale(splashController.currentLanguageCode == 'en' ? 'hi' : 'en'), translateTo: Locale(splashController.currentLanguageCode), automaticDetection: true, builder: () {
+      return GoogleTranslatorInit(apiKey,
+          translateFrom: Locale(
+              splashController.currentLanguageCode == 'en' ? 'hi' : 'en'),
+          translateTo: Locale(splashController.currentLanguageCode),
+          automaticDetection: true, builder: () {
         return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             navigatorKey: Get.key,
