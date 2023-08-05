@@ -23,8 +23,10 @@ import '../Assistant/assistant_chat_request_screen.dart';
 
 class DrawerScreen extends StatelessWidget {
   DrawerScreen({Key? key}) : super(key: key);
-  AddAssistantController assistantController = Get.find<AddAssistantController>();
-  CustomerReviewController customerReviewController = Get.find<CustomerReviewController>();
+  AddAssistantController assistantController =
+      Get.find<AddAssistantController>();
+  CustomerReviewController customerReviewController =
+      Get.find<CustomerReviewController>();
   SignupController signupController = Get.find<SignupController>();
   HomeController homeController = Get.find<HomeController>();
   WalletController walletController = Get.find<WalletController>();
@@ -46,7 +48,8 @@ class DrawerScreen extends StatelessWidget {
                     homeController.update();
                     Navigator.pop(context);
                   },
-                  child: global.user.imagePath != null && global.user.imagePath!.isNotEmpty
+                  child: global.user.imagePath != null &&
+                          global.user.imagePath!.isNotEmpty
                       ? signupController.astrologerList[0].imagePath!.isNotEmpty
                           ? Container(
                               height: Get.height * 0.1,
@@ -54,7 +57,8 @@ class DrawerScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7),
                                 image: DecorationImage(
-                                  image: NetworkImage("${global.imgBaseurl}${signupController.astrologerList[0].imagePath}"),
+                                  image: NetworkImage(
+                                      "${global.imgBaseurl}${signupController.astrologerList[0].imagePath}"),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -65,7 +69,8 @@ class DrawerScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7),
                                 image: DecorationImage(
-                                  image: NetworkImage("${global.user.imagePath}"),
+                                  image:
+                                      NetworkImage("${global.user.imagePath}"),
                                   fit: BoxFit.cover,
                                 ),
                                 border: Border.all(
@@ -77,7 +82,9 @@ class DrawerScreen extends StatelessWidget {
                       : Container(
                           height: 50,
                           width: 50,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: COLORS().primaryColor),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7),
+                              color: COLORS().primaryColor),
                           child: CircleAvatar(
                             backgroundColor: COLORS().primaryColor,
                             radius: 45,
@@ -92,7 +99,9 @@ class DrawerScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        global.user.name != null && global.user.name != '' ? '${global.user.name}' : "Astrologer",
+                        global.user.name != null && global.user.name != ''
+                            ? '${global.user.name}'
+                            : "Astrologer",
                         style: Theme.of(context).primaryTextTheme.headline2,
                       ).translate(),
                       Padding(
@@ -104,12 +113,15 @@ class DrawerScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
                               child: Text(
-                                '+91-',
+                                '+91',
                                 style: Theme.of(context).textTheme.caption,
                               ),
                             ),
                             Text(
-                              global.user.contactNo != null && global.user.contactNo != '' ? '${global.user.contactNo}' : "",
+                              global.user.contactNo != null &&
+                                      global.user.contactNo != ''
+                                  ? '${global.user.contactNo}'
+                                  : "",
                               style: Theme.of(context).textTheme.caption,
                             ),
                           ],
@@ -165,9 +177,12 @@ class DrawerScreen extends StatelessWidget {
                 ],
               ),
               onTap: () async {
-                final AstrologerAssistantChatController astrologerAssistantChatController = Get.find<AstrologerAssistantChatController>();
+                final AstrologerAssistantChatController
+                    astrologerAssistantChatController =
+                    Get.find<AstrologerAssistantChatController>();
                 global.showOnlyLoaderDialog();
-                await astrologerAssistantChatController.getAstrologerAssistantChatRequest();
+                await astrologerAssistantChatController
+                    .getAstrologerAssistantChatRequest();
                 global.hideLoader();
                 Get.to(() => AssistantChatRequestScreen());
               },
